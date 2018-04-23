@@ -1,6 +1,6 @@
 # Neighborhood Places Map
 
-This project is then final part of the udacity grow with google scholarship.
+This project is the final part of the Udacity grow with google scholarship.
 The full rubric for this project can be [viewed here](https://review.udacity.com/#!/rubrics/1351/view).
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
