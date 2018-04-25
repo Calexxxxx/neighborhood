@@ -2,7 +2,7 @@ import React from 'react';
 /**
  * @description import recompose
  */
-import { compose, withProps } from 'recompose';
+import {compose, withProps} from 'recompose';
 /**
  * @description import react-google-map
  */
@@ -33,15 +33,16 @@ export const MapInit = compose(
         mapElement: <div className="map__map" />
     } ),
     withScriptjs,
-    withGoogleMap
+    withGoogleMap,
+
 )(( props ) => (
     <GoogleMap
         ref={ props.onLoadMap }
         defaultZoom={ 14 }
         defaultCenter={ { lat: 50.775346, lng: 6.083887 } }
         defaultOptions={ { styles: CustomStyle } }>
-
         { props.detail ? props.detail.map(place => (
+
             <Marker
                 tabIndex="0"
                 key={ place.id }

@@ -9,15 +9,21 @@ import React, { Component } from 'react';
 import { MapInit } from "./MapInit";
 
 /**
+ * @description Error component
+ */
+import Error from "./Error";
+
+/**
  * @description map component
  */
 class Map extends Component {
     /**
      * @description set the default state
-     * @type {{id: string}}
+     * @type {{id: string, mapLoaded: boolean}}
      */
     state = {
-        id: ''
+        id: '',
+        mapLoaded: true
     };
 
     /**
@@ -26,6 +32,20 @@ class Map extends Component {
      */
     markerClickHandler = ( id ) => {
         this.setState( { id } );
+    };
+
+    /**
+     * @description check if the map is loaded correctly
+     * if not show the error component saying maintenance asking the user to come back later
+     * the mapLoaded state is changed to false in this case
+     * @param map
+     */
+    onLoadMapHandler = (map) => {
+      if(!map) {
+          this.setState({
+              mapLoaded: false
+          })
+      }
     };
 
     /**
@@ -63,14 +83,20 @@ class Map extends Component {
             renderPlaces = places;
         }
 
-        return (
-            <MapInit
-                onClickMarker={ this.markerClickHandler }
-                detail={ selectedPlaceDetails }
-                places={ renderPlaces }
-
-            />
-        )
+        if(this.state.mapLoaded) {
+            return (
+                <MapInit
+                    onLoadMap={ this.onLoadMapHandler }
+                    onClickMarker={ this.markerClickHandler }
+                    detail={ selectedPlaceDetails }
+                    places={ renderPlaces }
+                />
+            )
+        } else {
+            return (
+                <Error />
+            )
+        }
     }
 }
 
